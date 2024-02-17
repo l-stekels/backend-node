@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "es2018",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "inlineSourceMap": true,
+    "baseUrl": "./",
+    "paths": {
+      "@controllers/*": ["src/api/forecast/controllers/*"],
+      "@services/*": ["src/api/forecast/services/*"],
+      "@daos/*": ["src/api/forecast/daos/*"]
+    }
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}

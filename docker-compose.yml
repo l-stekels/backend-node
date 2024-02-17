@@ -1,0 +1,25 @@
+services:
+    server:
+        build:
+            context: ./
+            dockerfile: Dockerfile
+            target: dev
+        volumes:
+            - /app/node_modules
+            - ./:/app
+            - ./certs:/certs
+        ports:
+            - 3010:3010
+            - 3011:3011
+
+    ssl:
+        image: frapsoft/openssl
+        profiles: ["tools"]
+        volumes:
+            - ./certs:/certs
+        command: >
+            req -x509 -nodes -days 365 -newkey rsa:2048
+            -keyout /certs/key.pem
+            -out /certs/cert.pem
+            -subj "/C=US/ST=Denial/L=Springfield/O=Dis/CN=www.example.com"
+        restart: "no"
